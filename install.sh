@@ -18,19 +18,19 @@ if [ -f "pkglist.txt" ]; then
     sudo pacman -S --needed --noconfirm - < pkglist.txt
 fi
 
-# 3. Check for AUR Helper (yay)
-if ! command -v yay &> /dev/null; then
-    echo -e "${GREEN}AUR Helper 'yay' not found. Installing...${NC}"
+# 3. Check for AUR Helper (paru)
+if ! command -v paru &> /dev/null; then
+    echo -e "${GREEN}AUR Helper 'paru' not found. Installing...${NC}"
     sudo pacman -S --needed --noconfirm git base-devel
-    git clone https://aur.archlinux.org/yay.git /tmp/yay
-    cd /tmp/yay && makepkg -si --noconfirm
+    git clone https://aur.archlinux.org/paru.git /tmp/paru
+    cd /tmp/paru && makepkg -si --noconfirm
     cd -
 fi
 
 # 4. Install AUR packages
 echo -e "${GREEN}Installing AUR packages from aurlist.txt...${NC}"
 if [ -f "aurlist.txt" ]; then
-    yay -S --needed --noconfirm - < aurlist.txt
+    paru -S --needed --noconfirm - < aurlist.txt
 fi
 
 # 5. Restore configs
