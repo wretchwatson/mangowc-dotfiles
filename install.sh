@@ -44,7 +44,12 @@ mkdir -p "$HOME/.local/bin"
 cp -rv .local/bin/* "$HOME/.local/bin/"
 chmod +x $HOME/.local/bin/*.sh
 
-# 7. Restore dconf settings (GTK themes, font settings, etc.)
+# 7. Restore wallpaper
+echo -e "${GREEN}Restoring wallpaper...${NC}"
+mkdir -p "$HOME/.local/share/wallpaper"
+cp -rv .local/share/wallpaper/* "$HOME/.local/share/wallpaper/"
+
+# 8. Restore dconf settings (GTK themes, font settings, etc.)
 echo -e "${GREEN}Restoring dconf settings...${NC}"
 if [ -f "dconf_settings.ini" ]; then
     dconf load / < dconf_settings.ini
