@@ -38,4 +38,10 @@ echo -e "${GREEN}Restoring configuration files to ~/.config...${NC}"
 mkdir -p "$HOME/.config"
 cp -rv .config/* "$HOME/.config/"
 
+# 6. Restore custom scripts
+echo -e "${GREEN}Restoring custom scripts to ~/.local/bin...${NC}"
+mkdir -p "$HOME/.local/bin"
+cp -rv .local/bin/* "$HOME/.local/bin/"
+chmod +x $HOME/.local/bin/*.sh
+
 echo -e "${GREEN}Restore complete! Please reload your window manager or restart your session.${NC}"
