@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# --- Error Handling ---
+set -e # Exit immediately if a command exits with a non-zero status.
+
 # --- Color Definitions ---
 GREEN='\033[0;32m'
 BLUE='\033[0;34m'
@@ -10,12 +13,18 @@ echo -e "${BLUE}Starting DOTFILES Restore Script...${NC}"
 
 # 1. Update system
 echo -e "${GREEN}Updating system packages...${NC}"
-sudo pacman -Syu --noconfirm
+if ! sudo pacman -Syu; then
+    echo -e "${RED}Error during system update. Please check for conflicts!${NC}"
+    exit 1
+fi
 
 # 2. Install base packages
 echo -e "${GREEN}Installing base packages from pkglist.txt...${NC}"
 if [ -f "pkglist.txt" ]; then
-    sudo pacman -S --needed - < pkglist.txt
+    if ! sudo pacman -S --needed - < pkglist.txt; then
+        echo -e "${RED}Conflict or error detected in pacman packages. Stopping for safety!${NC}"
+        exit 1
+    fi
 fi
 
 # 3. Check for AUR Helper (paru)
@@ -30,7 +39,10 @@ fi
 # 4. Install AUR packages
 echo -e "${GREEN}Installing AUR packages from aurlist.txt...${NC}"
 if [ -f "aurlist.txt" ]; then
-    paru -S --needed - < aurlist.txt
+    if ! paru -S --needed - < aurlist.txt; then
+        echo -e "${RED}Conflict or error detected in AUR packages (paru). Stopping for safety!${NC}"
+        exit 1
+    fi
 fi
 
 # 5. Restore configs
