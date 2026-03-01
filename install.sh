@@ -15,22 +15,22 @@ sudo pacman -Syu --noconfirm
 # 2. Install base packages
 echo -e "${GREEN}Installing base packages from pkglist.txt...${NC}"
 if [ -f "pkglist.txt" ]; then
-    sudo pacman -S --needed --noconfirm - < pkglist.txt
+    sudo pacman -S --needed - < pkglist.txt
 fi
 
 # 3. Check for AUR Helper (paru)
 if ! command -v paru &> /dev/null; then
     echo -e "${GREEN}AUR Helper 'paru' not found. Installing...${NC}"
-    sudo pacman -S --needed --noconfirm git base-devel
+    sudo pacman -S --needed git base-devel
     git clone https://aur.archlinux.org/paru.git /tmp/paru
-    cd /tmp/paru && makepkg -si --noconfirm
+    cd /tmp/paru && makepkg -si
     cd -
 fi
 
 # 4. Install AUR packages
 echo -e "${GREEN}Installing AUR packages from aurlist.txt...${NC}"
 if [ -f "aurlist.txt" ]; then
-    paru -S --needed --noconfirm - < aurlist.txt
+    paru -S --needed - < aurlist.txt
 fi
 
 # 5. Restore configs
