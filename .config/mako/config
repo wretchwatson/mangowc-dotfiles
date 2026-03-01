@@ -1,0 +1,29 @@
+# Mako notification daemon configuration (Materia-Dark)
+# https://github.com/emersion/mako/wiki/Examples
+
+max-history=50
+sort=-time
+
+# Appearance
+font=JetBrainsMono Nerd Font 10
+width=300
+height=150
+margin=10
+padding=10
+border-size=2
+border-radius=6
+background-color=#1e1e1e
+text-color=#e1e1e1
+border-color=#8ab4f8
+progress-color=over #8ab4f8
+
+# Interaction
+default-timeout=5000
+ignore-timeout=0
+
+[urgency=low]
+border-color=#3c3c3c
+
+[urgency=high]
+border-color=#f28b82
+default-timeout=0

@@ -1,0 +1,41 @@
+#!/bin/bash
+
+# --- Color Definitions ---
+GREEN='\033[0;32m'
+BLUE='\033[0;34m'
+RED='\033[0;31m'
+NC='\033[0m' # No Color
+
+echo -e "${BLUE}Starting DOTFILES Restore Script...${NC}"
+
+# 1. Update system
+echo -e "${GREEN}Updating system packages...${NC}"
+sudo pacman -Syu --noconfirm
+
+# 2. Install base packages
+echo -e "${GREEN}Installing base packages from pkglist.txt...${NC}"
+if [ -f "pkglist.txt" ]; then
+    sudo pacman -S --needed --noconfirm - < pkglist.txt
+fi
+
+# 3. Check for AUR Helper (yay)
+if ! command -v yay &> /dev/null; then
+    echo -e "${GREEN}AUR Helper 'yay' not found. Installing...${NC}"
+    sudo pacman -S --needed --noconfirm git base-devel
+    git clone https://aur.archlinux.org/yay.git /tmp/yay
+    cd /tmp/yay && makepkg -si --noconfirm
+    cd -
+fi
+
+# 4. Install AUR packages
+echo -e "${GREEN}Installing AUR packages from aurlist.txt...${NC}"
+if [ -f "aurlist.txt" ]; then
+    yay -S --needed --noconfirm - < aurlist.txt
+fi
+
+# 5. Restore configs
+echo -e "${GREEN}Restoring configuration files to ~/.config...${NC}"
+mkdir -p "$HOME/.config"
+cp -rv .config/* "$HOME/.config/"
+
+echo -e "${GREEN}Restore complete! Please reload your window manager or restart your session.${NC}"
