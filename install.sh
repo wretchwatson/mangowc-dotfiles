@@ -67,4 +67,14 @@ if [ -f "dconf_settings.ini" ]; then
     dconf load / < dconf_settings.ini
 fi
 
+# 9. Restore system configurations (requires sudo)
+echo -e "${GREEN}Restoring system-wide configurations...${NC}"
+if [ -d "etc" ]; then
+    sudo cp -rv etc/* /etc/
+fi
+
+# 10. Enable system services
+echo -e "${GREEN}Enabling system services (SDDM)...${NC}"
+sudo systemctl enable sddm
+
 echo -e "${GREEN}Restore complete! Please reload your window manager or restart your session.${NC}"
