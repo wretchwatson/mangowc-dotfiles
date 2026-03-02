@@ -1,5 +1,4 @@
 amd-ucode
-antigravity
 base
 base-devel
 bash-completion
@@ -14,7 +13,6 @@ fastfetch
 fuzzel
 fzf
 git
-google-chrome
 grim
 gst-plugin-pipewire
 htop
@@ -30,7 +28,6 @@ linux-firmware
 linux-lts
 linux-lts-headers
 mako
-mangowc
 materia-gtk-theme
 mesa-utils
 nano
@@ -45,8 +42,6 @@ nvidia-utils
 nwg-look
 otf-font-awesome
 papirus-icon-theme
-paru
-paru-debug
 pavucontrol
 pipewire
 pipewire-alsa
@@ -60,9 +55,7 @@ slurp
 steam
 sudo
 swww
-teams-for-linux
 terminus-font
-ttf-comfortaa
 ttf-jetbrains-mono-nerd
 unrar
 unzip

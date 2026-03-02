@@ -1,6 +1,5 @@
 antigravity
 google-chrome
 mangowm
-scenefx0.4
 teams-for-linux
 ttf-comfortaa
