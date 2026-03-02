@@ -1,8 +1,6 @@
 antigravity
 google-chrome
-mangowc
-paru
-paru-debug
+mangowm
 scenefx0.4
 teams-for-linux
 ttf-comfortaa
